@@ -1,32 +1,69 @@
 import { useSelector } from "react-redux";
-import { Box, Typography, List, ListItem } from "@mui/material";
+import { Box, Typography, List, ListItem, ListItemText, Chip } from "@mui/material";
 import { RootState } from "../store/store";
 import { FormData } from "../types/types";
 
 const ConfirmationPage = () => {
-    // Specify that formData can be FormData or null
     const formData = useSelector( ( state: RootState ) => state.form.data ) as FormData | null;
 
     if ( !formData ) {
         return <Typography>No data submitted</Typography>;
     }
 
+    const renderListItem = ( label: string, value: string ) => (
+        <ListItem>
+            <ListItemText
+                primary={
+                    <Typography variant="body1" sx={ { fontWeight: 'bold', display: 'inline' } }>
+                        { label }
+                    </Typography>
+                }
+                secondary={ value }
+            />
+        </ListItem>
+    );
+
     return (
         <Box sx={ { padding: 4 } }>
             <Typography variant="h4" gutterBottom>Form Submitted</Typography>
             <List>
-                <ListItem>Full Name: { formData.fullName }</ListItem>
-                <ListItem>Email: { formData.email }</ListItem>
-                <ListItem>Issue Type: { formData.issueType }</ListItem>
-                <ListItem>Tags: { formData.tags.join( ", " ) }</ListItem>
+                { renderListItem( "Full Name:", formData.fullName ) }
+                { renderListItem( "Email:", formData.email ) }
+                { renderListItem( "Issue Type:", formData.issueType ) }
                 <ListItem>
-                    Steps to Reproduce:
-                    <List>
-                        { formData.steps.map( ( step, index ) => (
-                            <ListItem key={ index }>{ step }</ListItem>
+                    <ListItemText
+                        primary={
+                            <Typography variant="body1" sx={ { fontWeight: 'bold', display: 'inline' } }>
+                                Tags:
+                            </Typography>
+                        }
+                    />
+                    <Box sx={ { display: 'flex', gap: 1, mt: 1 } }>
+                        { formData.tags.map( ( tag, index ) => (
+                            <Chip key={ index } label={ tag } variant="outlined" />
                         ) ) }
-                    </List>
+                    </Box>
                 </ListItem>
+                <ListItem>
+                    <ListItemText
+                        primary={
+                            <Typography variant="body1" sx={ { fontWeight: 'bold' } }>
+                                Steps to Reproduce:
+                            </Typography>
+                        }
+                    />
+                </ListItem>
+                <Box component="ol" sx={ { paddingLeft: 4, mt: 1 } }>
+                    { formData.steps.map( ( step, index ) => (
+                        <ListItem
+                            component="li"
+                            key={ index }
+                            sx={ { display: 'list-item', paddingLeft: 0 } }
+                        >
+                            { step }
+                        </ListItem>
+                    ) ) }
+                </Box>
             </List>
         </Box>
     );
