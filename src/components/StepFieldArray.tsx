@@ -27,6 +27,9 @@ const StepFieldArray = ( { control, errors }: StepFieldArrayProps ) => {
         }
     }, [ fields, append ] );
 
+    // Check if the last step field is empty to disable the "Add Step" button
+    const isLastStepFilled = stepsValues[ stepsValues.length - 1 ]?.trim() !== "";
+
     return (
         <Box>
             { fields.map( ( field, index ) => (
@@ -52,7 +55,13 @@ const StepFieldArray = ( { control, errors }: StepFieldArrayProps ) => {
                 </Box>
             ) ) }
             <Box sx={ { textAlign: "right", mt: 2 } }>
-                <Button onClick={ () => append( "" ) } variant="outlined"> + Add Step</Button>
+                <Button
+                    onClick={ () => append( "" ) }
+                    variant="outlined"
+                    disabled={ !isLastStepFilled } // Disable if the last step is not filled
+                >
+                    + Add Step
+                </Button>
             </Box>
             {/* General error message for the steps array */ }
             { errors.steps && !Array.isArray( errors.steps ) && (
