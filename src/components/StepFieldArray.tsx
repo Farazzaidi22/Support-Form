@@ -42,16 +42,17 @@ const StepFieldArray = ( { control, errors }: StepFieldArrayProps ) => {
                                     ? "Please fill out this step before adding another step"
                                     : "" // Hide helper text if field is filled
                         }
+                        sx={ { width: "80%" } }
                     />
                     { fields.length > 1 && (
-                        <Button onClick={ () => remove( index ) } color="error">
+                        <Button onClick={ () => remove( index ) } color="error" sx={ { width: "20%" } }>
                             Remove
                         </Button>
                     ) }
                 </Box>
             ) ) }
-            <Box>
-                <Button onClick={ () => append( "" ) }>Add Step</Button>
+            <Box sx={ { textAlign: "right", mt: 2 } }>
+                <Button onClick={ () => append( "" ) } variant="outlined"> + Add Step</Button>
             </Box>
             {/* General error message for the steps array */ }
             { errors.steps && !Array.isArray( errors.steps ) && (

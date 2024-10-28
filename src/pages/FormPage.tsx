@@ -22,7 +22,6 @@ const FormPage = () => {
         handleSubmit,
         control,
         setValue,
-        getValues,  // Destructure getValues here
         formState: { errors },
     } = useForm<FormData>( {
         resolver: zodResolver( schema ),
@@ -39,7 +38,6 @@ const FormPage = () => {
     const navigate = useNavigate();
 
     const onSubmit = ( data: FormData ) => {
-        console.log( "here here", data );
         dispatch( saveFormData( data ) );
         navigate( "/confirmation" );
     };
@@ -106,7 +104,7 @@ const FormPage = () => {
                     ) }
                 />
 
-                <StepFieldArray control={ control } errors={ errors } getValues={ getValues } /> {/* Pass getValues as a prop */ }
+                <StepFieldArray control={ control } errors={ errors } /> {/* Pass getValues as a prop */ }
 
                 <Button type="submit" variant="contained">
                     Submit
