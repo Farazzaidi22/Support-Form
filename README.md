@@ -46,7 +46,7 @@ A support contact form built with React, TypeScript, and Material-UI, using `rea
 1. **Clone the repository**:
 
    ```bash
-   git clone https://github.com/yourusername/support-contact-form.git
+   git clone https://github.com/Farazzaidi22/Support-Form.git
    cd support-contact-form
    ```
 
@@ -129,23 +129,3 @@ support-contact-form
 - **Required Fields**: Each field is validated through Zod's schema-based validation.
 - **Dynamic Step Validation**: The "Steps to Reproduce" field array enforces that at least one step must be added. The "Add Step" button is disabled until the last field is filled.
 - **Real-Time Validation**: The error message under each step field disappears in real-time as the user types.
-
-## Contributing
-
-Contributions, issues, and feature requests are welcome. Feel free to check out the [issues page](https://github.com/yourusername/support-contact-form/issues).
-
-1. Fork the repository.
-2. Create a new branch.
-3. Make your changes.
-4. Submit a pull request.
-
-## License
-
-This project is licensed under the MIT License.
-
----
-
-### Notes
-
-- **Replace `https://github.com/yourusername/support-contact-form` with the actual repository URL**.
-- You can update the **screenshot path** under the "Demo" section with an actual image to help others visualize the form.
