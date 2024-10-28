@@ -92,6 +92,16 @@ This project doesn’t require any environment variables for setup.
    - **Steps to Reproduce**: Add as many steps as needed. The "Add Step" button will only enable when the previous step is filled.
 3. Submit the form. The data is saved in Redux, and you’ll be redirected to a confirmation page displaying the submitted information.
 
+## Running Tests
+
+This project uses **Vitest** for testing.
+
+To run all tests, use:
+
+```bash
+   pnpm test
+```
+
 ### Code Overview
 
 The project structure is designed for scalability and clarity.
