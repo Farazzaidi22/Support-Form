@@ -9,11 +9,11 @@ import { TextField, Button, MenuItem, Box, Chip, Autocomplete } from "@mui/mater
 import { FormData } from "../types/types";
 
 const schema = z.object( {
-    fullName: z.string().nonempty( "Full name is required" ),
-    email: z.string().email( "Invalid email address" ),
-    issueType: z.string().nonempty( "Please select an issue type" ),
-    tags: z.array( z.string() ).min( 1, "Please select at least one tag" ), // Ensure tags has at least one entry
-    steps: z.array( z.string().nonempty( "Step is required" ) ),
+    fullName: z.string().min( 1, { message: "Full name is required" } ),
+    email: z.string().email( { message: "Invalid email address" } ),
+    issueType: z.string().min( 1, { message: "Please select an issue type" } ),
+    tags: z.array( z.string() ).min( 1, { message: "Please select at least one tag" } ),
+    steps: z.array( z.string().min( 1, { message: "Step is required" } ) ).min( 1, { message: "Please add at least one step" } ),
 } );
 
 const FormPage = () => {
@@ -22,12 +22,16 @@ const FormPage = () => {
         handleSubmit,
         control,
         setValue,
+        getValues,  // Destructure getValues here
         formState: { errors },
     } = useForm<FormData>( {
         resolver: zodResolver( schema ),
         defaultValues: {
+            fullName: "",
+            email: "",
+            issueType: "",
+            tags: [],
             steps: [ "" ],
-            tags: [],  // Set default as empty array for tags
         },
     } );
 
@@ -39,8 +43,6 @@ const FormPage = () => {
         dispatch( saveFormData( data ) );
         navigate( "/confirmation" );
     };
-
-    console.log( errors, "errors" );
 
     return (
         <>
@@ -75,7 +77,6 @@ const FormPage = () => {
                     <MenuItem value="General Inquiry">General Inquiry</MenuItem>
                 </TextField>
 
-                {/* Tags field with Autocomplete and chips */ }
                 <Controller
                     name="tags"
                     control={ control }
@@ -105,7 +106,7 @@ const FormPage = () => {
                     ) }
                 />
 
-                <StepFieldArray control={ control } errors={ errors } />
+                <StepFieldArray control={ control } errors={ errors } getValues={ getValues } /> {/* Pass getValues as a prop */ }
 
                 <Button type="submit" variant="contained">
                     Submit
