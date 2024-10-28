@@ -13,7 +13,7 @@ A support contact form built with React, TypeScript, and Material-UI, using `rea
 
 ## Demo
 
-![Form Demo](./screenshot.png) <!-- Replace this with a link or path to a screenshot in your repo -->
+![Form Demo](./screenshot.png)
 
 ## Features
 
