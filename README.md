@@ -1,7 +1,3 @@
-Here's a `README.md` file that you can use for your GitHub repository. This README provides clear instructions on how to set up, run, and understand the form project you've created using React, TypeScript, React Hook Form, Zod, and Material-UI.
-
----
-
 # Support Contact Form
 
 A support contact form built with React, TypeScript, and Material-UI, using `react-hook-form` for form handling and validation with `zod` for schema-based validation. This form includes dynamic fields for "Steps to Reproduce," which allows adding/removing fields based on input, and uses Redux for state management.
@@ -153,5 +149,3 @@ This project is licensed under the MIT License.
 
 - **Replace `https://github.com/yourusername/support-contact-form` with the actual repository URL**.
 - You can update the **screenshot path** under the "Demo" section with an actual image to help others visualize the form.
-
-Let me know if you need additional details in the README!
